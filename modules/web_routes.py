@@ -6,8 +6,8 @@ from flask import Flask, render_template, request, redirect, jsonify, session
 from flask_mail import Mail, Message
 from flask_script import Manager, Shell
 
-from schedule_access import *
-from security.crypting import get_link
+from modules.schedule_access import *
+from modules.security.crypting import get_link
 
 
 tm = Flask(__name__, template_folder="../templates", static_folder="../../time_manager")
