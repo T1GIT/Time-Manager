@@ -29,7 +29,8 @@
 ## PRAGMATIC FRIEND (ﾉ◕ヮ◕)ﾉ 
 ## TRIIKSTER (❍ᴥ❍ʋ) 
 
-Time_Manager.com
 
-#### Version 1.4.0
-###### 03.06.2020
+###
+Time_Manager.com
+##### Version 1.5.0
+###### 04.06.2020

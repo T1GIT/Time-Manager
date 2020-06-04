@@ -78,19 +78,20 @@ function click_add_month(btn) {
 function blur_input_month(form) {
     let old = form.data('old');
     if (user_data.login === undefined) {
-        if (old.digit !== '' && old.month !== '' && old.task !== '') {
+        if (form.find('.digit').val() !== '' &&
+        form.find('.month').val() !== '' &&
+        form.find('.task').val() !== '') {
             form.removeClass('new');
             form.find('input').removeAttr('placeholder');
             form.prev().prev('button').removeClass('new');
         }
     }
     else {
+        let old = form.data('old');
         let new_month_data = get_month_data(form);
         form.data('old', new_month_data);
         if (form.hasClass('new')) {
-            if (form.find('.digit').val() !== '' &&
-            form.find('.month').val() !== '' &&
-            form.find('.task').val() !== '') {
+            if (new_month_data.hour !== '' && new_month_data.minute !== '' && new_month_data.task !== '') {
                 receive('/add_month', function (data) {
                     if (data === 'exist') {
                         del_month_task(form);
