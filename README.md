@@ -18,6 +18,7 @@
 3. Hold down shift and right - click on an empty space in the folder.
 4. Click _**open command window**_ or _**open powershell window here**_
 5. Type this command
+   
     `python main.py`
 6. Click on the link
 
