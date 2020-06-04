@@ -1,10 +1,26 @@
 # _Time Manager_
-#### Required Modules:
+### Required Modules:
 1) Flask (full-packet)
 2) Flask-Mail
 3) Flask-Script
 4) Werkzeug
 5) Pycryptodome
+
+### Console commands:
+
+`pip install pip`
+
+`pip install --upgrade pip`
+
+`pip install flask`
+
+`pip install flask_script`
+
+`pip install flask_mail`
+
+`pip install werkzeug`
+
+`pip install pycryptodome`
 
 #  # Best team:
 ## T1MON (づ￣ ³￣)づ
