@@ -1,5 +1,22 @@
+from os import system as con
+
 from modules.security import crypting
 from modules.web_routes import *
+
+# Установка модулей
+commands = [
+    'pip install pip',
+    'pip install --upgrade pip',
+    'pip install flask',
+    'pip install flask_script',
+    'pip install flask_mail',
+    'pip install werkzeug',
+    'pip install pycryptodome'
+]
+
+for cmd in commands:
+    res = con(cmd)
+    if res == 0: con('cls')
 
 crypting.create_keys()  # Обновление RSA ключей
 
