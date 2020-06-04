@@ -1,4 +1,4 @@
-# _Time Manager_
+# **_Time Manager_**
 ### Required Modules:
 1) Flask (full-packet)
 2) Flask-Mail
@@ -8,19 +8,15 @@
 
 ### Console commands:
 
-`pip install pip`
-
-`pip install --upgrade pip`
-
-`pip install flask`
-
-`pip install flask_script`
-
-`pip install flask_mail`
-
-`pip install werkzeug`
-
-`pip install pycryptodome`
+```
+pip install pip
+pip install --upgrade pip
+pip install flask
+pip install flask_script
+pip install flask_mail
+pip install werkzeug
+pip install pycryptodome
+```
 
 #  # Best team:
 ## T1MON (づ￣ ³￣)づ
