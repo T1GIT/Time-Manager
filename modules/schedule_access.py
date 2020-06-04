@@ -1,6 +1,6 @@
 from werkzeug.security import check_password_hash, generate_password_hash, gen_salt
 import sqlite3
-from security.crypting import decrypt, set_sum, get_link, escepinator
+from modules.security.crypting import decrypt, set_sum, get_link, escepinator
 
 
 class User(object):
