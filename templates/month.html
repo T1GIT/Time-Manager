@@ -1,0 +1,59 @@
+<div class="body">
+    <button id="add_month_task" onmousedown="click_add_month($(this))">
+        <svg>
+            <use xlink:href="time_manager/images/sprites.svg#sprite_btn_add"></use>
+        </svg>
+    </button>
+    <a class="alert"
+       onmouseenter="if ($(this).prev().hasClass('new')) {blur_input_month($(this).siblings('.item.new'))}"
+    >Введите данные</a>
+    {% for digit, month, task in table_month %}
+        <form class="item month">
+            <span class="time"
+                  onmouseenter="save_month($(this).parent())"
+                  onmouseleave="blur_input_month($(this).parent())"
+            >
+            <input class="digit" type="text"
+            {% if digit < 10 %}
+               value="{{ '0' + digit|string }}"
+            {% else %}
+                value="{{ digit }}"
+            {% endif %}
+            max="31" min="1"
+                   onfocus="$(this).parent().addClass('input'); save_month($(this).parent())"
+                   onblur="$(this).parent().removeClass('input');
+                       if ($(this).val() === '' && !$(this).closest('.item').hasClass('new')) $(this).val(0);
+                       blur_input_month($(this).closest('.item'))"
+                   onkeydown="key_func(event)"
+                   oninput="input_time($(this))"
+            >
+            <span>.</span>
+            <input class="month" type="text"
+            {% if month < 10 %}
+                value="{{ '0' + month|string }}"
+            {% else %}
+                value="{{ month }}"
+            {% endif %}
+            max="12" min="1"
+                   onfocus="$(this).parent().addClass('input'); save_month($(this).parent())"
+                   onblur="$(this).parent().removeClass('input');
+                       if ($(this).val() === '' && !$(this).closest('.item').hasClass('new')) $(this).val(0);
+                       blur_input_month($(this).closest('.item'))"
+                   onkeydown="key_func(event)"
+                   oninput="input_time($(this))"
+            >
+            </span>
+            <textarea class="task" placeholder="Задача"
+                      oninput="autosize(this)"
+                      onfocus="save_month($(this).parent())"
+                      onblur="blur_input_month($(this).closest('.item'))"
+                      onkeydown="key_func(event)"
+            >{{ task }}</textarea>
+            <button type="button" class="del_month" onmousedown="del_month_task($(this).parent())">
+                <svg>
+                    <use xlink:href="time_manager/images/sprites.svg#sprite_btn_del_task"></use>
+                </svg>
+            </button>
+        </form>
+    {% endfor %}
+</div>

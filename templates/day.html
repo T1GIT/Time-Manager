@@ -1,0 +1,59 @@
+<div class="body">
+<button id="add_day_task" onmousedown="click_add_day($(this))">
+        <svg>
+            <use xlink:href="time_manager/images/sprites.svg#sprite_btn_add"></use>
+        </svg>
+    </button>
+    <a class="alert"
+       onmouseenter="if ($(this).prev().hasClass('new')) {blur_input_day($(this).siblings('.item.new'))}"
+    >Введите данные</a>
+    {% for hour, minute, task in table_day %}
+        <form class="item day">
+            <span class="time"
+                  onmouseenter="save_day($(this).parent())"
+                  onmouseleave="blur_input_day($(this).parent())"
+            >
+            <input class="hour" type="text"
+            {% if hour < 10 %}
+               value="{{ '0' + hour|string }}"
+            {% else %}
+                value="{{ hour }}"
+            {% endif %}
+            max="23" min="0"
+                   onfocus="$(this).parent().addClass('input'); save_day($(this).parent())"
+                   onblur="$(this).parent().removeClass('input');
+                       if ($(this).val() === '' && !$(this).closest('.item').hasClass('new')) $(this).val(0);
+                       blur_input_day($(this).closest('.item'))"
+                   onkeydown="key_func(event)"
+                   oninput="input_time($(this))"
+            >
+            <span>:</span>
+            <input class="minute" type="text"
+            {% if minute < 10 %}
+                value="{{ '0' + minute|string }}"
+            {% else %}
+                value="{{ minute }}"
+            {% endif %}
+            max="59" min="0"
+                   onfocus="$(this).parent().addClass('input'); save_day($(this).parent())"
+                   onblur="$(this).parent().removeClass('input');
+                       if ($(this).val() === '' && !$(this).closest('.item').hasClass('new')) $(this).val(0);
+                       blur_input_day($(this).closest('.item'))"
+                   onkeydown="key_func(event)"
+                   oninput="input_time($(this))"
+            >
+            </span>
+            <textarea class="task" placeholder="Задача" rows=1
+                      oninput="autosize(this)"
+                      onfocus="save_day($(this).parent())"
+                      onblur="blur_input_day($(this).closest('.item'))"
+                      onkeydown="key_func(event)"
+            >{{ task }}</textarea>
+            <button type="button" class="del_day"onmousedown="del_day_task($(this).parent())">
+                <svg>
+                    <use xlink:href="time_manager/images/sprites.svg#sprite_btn_del_task"></use>
+                </svg>
+            </button>
+        </form>
+    {% endfor %}
+</div>

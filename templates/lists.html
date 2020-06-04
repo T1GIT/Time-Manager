@@ -1,0 +1,54 @@
+<div class="body lists">
+    <button id="add_list" onmousedown="click_add_list($(this))">
+        <svg>
+            <use xlink:href="time_manager/images/sprites.svg#sprite_btn_add"></use>
+        </svg>
+    </button>
+    <a class="alert"
+       onmouseenter="if ($(this).prev().hasClass('new')) {blur_list_name($(this).siblings('.back_back.new').find('.title'))}"
+    >Напишите имя списка</a>
+    {% for name in lists %}
+        <div class="back_back">
+            <div class="back">
+                <form class="title">
+                    <input class="name" placeholder="Название" value="{{ name }}"
+                           onfocus="save_name($(this).parent())"
+                           onblur="blur_list_name($(this).parent())"
+                           onkeydown="list_key_func(event)"
+                    >
+                    <button type="button" class="del_list"
+                            onmousedown="del_list($(this).closest('.back_back'))"
+                    >
+                        <svg><use xlink:href="time_manager/images/sprites.svg#sprite_btn_remove"></use></svg>
+                    </button>
+                </form>
+                    {% for task in lists[name] %}
+                <form class="list_task">
+                    <textarea class="task" placeholder="Задача" rows="1"
+                              onfocus="save_list($(this).parent())"
+                              oninput="autosize(this)"
+                              onblur="blur_list_task($(this).parent())"
+                              onkeydown="list_key_func(event)"
+                    >{{ task }}</textarea>
+                    <button class="del_list_task" type="button"
+                            onmousedown="del_list_task($(this).parent())"
+                    >
+                        <svg><use xlink:href="time_manager/images/sprites.svg#sprite_btn_del_task"></use></svg>
+                    </button>
+                </form>
+                    {% endfor %}
+                <button class="add_list_task" type="button" onmousedown="click_add_list_task($(this))">
+                    <svg>
+                        <use xlink:href="time_manager/images/sprites.svg#sprite_btn_add"></use>
+                    </svg>
+                </button>
+                <a class="alert"
+                   onmouseenter="
+                        if ($(this).closest('.back_back').hasClass('new')) {blur_list_name($(this).siblings('.title'))}
+                        else {blur_list_task($(this).siblings('.list_task.new'))}
+                    "
+                >Введите данные</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>

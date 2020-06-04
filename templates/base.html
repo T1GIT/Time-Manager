@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="time manager, time, schedule, время, тайм менеджер, расписание" />
+    <meta name="description" content="Этот сайт поможет вам наиболее оптимально распределить время" />
+    {#         Стили         #}
+    <link href="time_manager/styles/fonts/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="time_manager/styles/base.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/help.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/tables.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/profile.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/authorisation.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/about.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/themes/light.css" rel="stylesheet" type="text/css" id="theme_choice"/>
+    <link href="time_manager/styles/colors/blue.css" rel="stylesheet" type="text/css" id="color_choice"/>
+    <link href="time_manager/images/favicons/blue.svg" rel="shortcut icon" type="image/x-icon" id="favicon_choice"/>
+    {#         Скрипты        #}
+    <script type="text/javascript" src="time_manager/scriptes/library/Forge.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/library/jQuery.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/library/Sortable.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/requests.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/encrypt.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/actions.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/profile.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/table_day.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/table_month.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/lists.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/authorise.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/main.js"></script>
+    <title>Time Manager</title>
+</head>
+
+<body style="opacity: 0">
+    <header class="logout">
+        <span class="left" onmousedown="change_page('help')">
+            <a>Time Manager</a>
+        </span>
+        <a class="center" id="button_lists" onmousedown="change_page('lists')">Списки</a>
+        <a class="center" id="button_day" onmousedown="change_page('day')">Расписание</a>
+        <a class="center" id="button_month" onmousedown="change_page('month')">Дедлайны</a>
+        <span class="right" id="button_profile"  onmousedown="toggle_aside($('#profile_menu'))">
+            <a>
+                <div class="nickname"></div>
+                <picture class="avatar"></picture>
+                <svg id="set_icon">
+                    <use xlink:href="time_manager/images/sprites.svg#sprite_set_icon"></use>
+                </svg>
+            </a>
+        </span>
+
+        <span id="authorisation">
+            <span id="button_authorisation"
+                  title="Здесь вы можете зарегестрироваться или войти"
+                  onmousedown="toggle_aside($('#authorisation_menu'))"
+            >Авторизация</span>
+        </span>
+    </header>
+
+    <aside id="profile_menu">{% include 'profile.html' %}</aside>
+    <aside class='empty' id="authorisation_menu">{% include 'authorisation.html' %}</aside>
+
+    <main id="page_help">{% include 'help.html' %}</main>
+    <main id="page_lists"></main>
+    <main id="page_day"></main>
+    <main id="page_month"></main>
+    <main id="page_about">{% include 'about.html' %}</main>
+
+    <footer>
+        <span class="left"
+              title="Союз Советских Социалистических Рептилоидов"
+        >Проект СССР &trade;</span>
+        <span class="center"
+              title="Не рекомендую сюда нажимать"
+              onclick="$('html').toggleClass('ass_crack')"
+        >Все права защищены (нет) &reg; &copy; 2020 г.</span>
+        <span class="right" id="button_about" onmousedown="change_page('about')"
+              title="Здесь мы можете больше узнать о создателях сайта"
+        >
+            <a>Разработчики</a>
+        </span>
+    </footer>
+</body>
+</html>

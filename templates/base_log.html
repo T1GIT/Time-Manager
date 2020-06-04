@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="time manager, time, schedule, время, тайм менеджер, расписание" />
+    <meta name="description" content="Этот сайт поможет вам наиболее оптимально распределить время" />
+    {#         Стили         #}
+    <link href="time_manager/styles/fonts/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="time_manager/styles/base.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/help.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/tables.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/profile.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/authorisation.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/about.css" rel="stylesheet" type="text/css"/>
+    <link href="time_manager/styles/themes/{{ theme }}.css" rel="stylesheet" type="text/css" id="theme_choice"/>
+    <link href="time_manager/styles/colors/{{ color }}.css" rel="stylesheet" type="text/css" id="color_choice"/>
+    <link href="time_manager/images/favicons/{{ color }}.svg" rel="shortcut icon" type="image/x-icon" id="favicon_choice"/>
+    {#         Скрипты        #}
+    <script type="text/javascript" src="time_manager/scriptes/library/Forge.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/library/jQuery.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/library/Sortable.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/requests.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/encrypt.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/actions.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/profile.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/table_day.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/table_month.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/lists.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/authorise.js"></script>
+    <script type="text/javascript" src="time_manager/scriptes/main.js"></script>
+    <title>Time Manager</title>
+</head>
+
+<body style="opacity: 0">
+    <header>
+        <span class="left" onmousedown="change_page('help')">
+            <a>Time Manager</a>
+        </span>
+        <a class="center" id="button_lists" onmousedown="change_page('lists')">Списки</a>
+        <a class="center" id="button_day" onmousedown="change_page('day')">Расписание</a>
+        <a class="center" id="button_month" onmousedown="change_page('month')">Дедлайны</a>
+        <span class="right" id="button_profile" onmousedown="toggle_aside($('#profile_menu'))">
+            <a>
+                <div class="nickname">{{ login }}</div>
+                <picture class="avatar" {{ avatar|safe }}></picture>
+                <svg id="set_icon">
+                    <use xlink:href="time_manager/images/sprites.svg#sprite_set_icon"></use>
+                </svg>
+            </a>
+        </span>
+
+        <span id="authorisation">
+            <span id="button_authorisation" onmousedown="toggle_aside($('#authorisation_menu'))">Авторизация</span>
+        </span>
+    </header>
+
+    <aside id="profile_menu">{% include 'profile.html' %}</aside>
+    <aside class='empty' id="authorisation_menu">{% include 'authorisation.html' %}</aside>
+
+    <main id="page_help" class="help_login">{% include 'help.html' %}</main>
+    <main id="page_lists">{% include 'lists.html' %}</main>
+    <main id="page_day">{% include 'day.html' %}</main>
+    <main id="page_month">{% include 'month.html' %}</main>
+    <main id="page_about">{% include 'about.html' %}</main>
+
+    <footer>
+        <span class="left"
+              title="Союз Советских Социалистических Рептилоидов"
+        >Проект СССР &trade;</span>
+        <span class="center"
+              title="Не рекомендую сюда нажимать"
+              onclick="$('html').toggleClass('ass_crack')"
+        >Все права защищены (нет) &reg; &copy; 2020 г.</span>
+        <span class="right" id="button_about" onmousedown="change_page('about')">
+            <a>Разработчики</a>
+        </span>
+    </footer>
+</body>
+</html>
+<script>
+    user_data = {
+        'login': "{{ login }}",
+        'email': "{{ email }}",
+        'theme': "{{ theme }}",
+        'color': "{{ color }}",
+        'activated': {{ activated }}
+    };
+    salt = "{{ salt }}";
+    window.restore = 0{{ restore }};
+    user_logined = true;
+    $(`aside menu .theme button[data-theme="${user_data.theme}"][data-color="${user_data.color}`).addClass('choice');
+</script>
