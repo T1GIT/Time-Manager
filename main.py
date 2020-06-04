@@ -1,4 +1,5 @@
-from modules import *
+from modules.security import crypting
+from modules.web_routes import *
 
 create_keys()  # Обновление RSA ключей
 
