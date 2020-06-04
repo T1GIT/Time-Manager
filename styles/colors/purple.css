@@ -1,0 +1,22 @@
+header, footer, aside, div.name, #dev_head, .card_head, .card {background-color: #b478c2}
+aside menu div.theme {border-color: #b478c2}
+aside menu div.theme::before {color: #b478c2}
+::selection {background-color: rgba(180, 120, 194, 0.5)}
+
+::-webkit-scrollbar-thumb {background-color: rgba(180, 120, 194, 0.51)}
+::-webkit-scrollbar-thumb:hover{background-color: #b478c2}
+
+@-webkit-keyframes autofill {to {background-color: rgba(180, 120, 194, 0.5)}}
+aside menu input, input.fill+button:hover {background-color: #b478c2}
+aside menu input.fill, #restore:hover, .time:hover {background-color: rgba(180, 120, 194, 0.5)}
+aside menu p, #set_login:focus, .time *, .time input::placeholder, .alert {color: #b478c2}
+#menu_confirm_delete button, #confirm_email button, .item button, .back .title input, .del_list_task {background-color: #b478c2}
+.item textarea, #add_day_task, #add_month_task, .add_list_task, #add_list, .back {background-color: rgba(180, 120, 194, 0.5)}
+#add_day_task:hover, #add_month_task:hover, #add_list:hover, .add_list_task:hover {background-color: #b478c2}
+.time.input {background-color: #b478c2}
+.list_task textarea:hover {background-color: rgba(180, 120, 194, 0.2)}
+.list_task textarea:focus {background-color: rgba(180, 120, 194, 0.4);}
+#main_clock {border-color: #b478c2}
+#main_clock::before, #main_clock::after {background-color: #b478c2}
+#main_clock p {color: #b478c2}
+
