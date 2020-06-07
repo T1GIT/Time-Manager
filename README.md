@@ -1,4 +1,4 @@
-![Cover](https://github.com/T1GIT/time_manager/blob/master/images/cover.jpg?raw=true)
+![Cover](https://github.com/T1GIT/time_manager/blob/master/static/images/cover.jpg?raw=true)
 #
 ## T1MON (づ￣ ³￣)づ
 ## ATTILENE ψ(▼へ▼メ)
