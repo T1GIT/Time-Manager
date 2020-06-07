@@ -6,29 +6,29 @@
     <meta name="keywords" content="time manager, time, schedule, время, тайм менеджер, расписание" />
     <meta name="description" content="Этот сайт поможет вам наиболее оптимально распределить время" />
     {#         Стили         #}
-    <link href="time_manager/styles/fonts/fonts.css" rel="stylesheet" type="text/css" />
-    <link href="time_manager/styles/base.css" rel="stylesheet" type="text/css"/>
-    <link href="time_manager/styles/help.css" rel="stylesheet" type="text/css"/>
-    <link href="time_manager/styles/tables.css" rel="stylesheet" type="text/css"/>
-    <link href="time_manager/styles/profile.css" rel="stylesheet" type="text/css"/>
-    <link href="time_manager/styles/authorisation.css" rel="stylesheet" type="text/css"/>
-    <link href="time_manager/styles/about.css" rel="stylesheet" type="text/css"/>
-    <link href="time_manager/styles/themes/{{ theme }}.css" rel="stylesheet" type="text/css" id="theme_choice"/>
-    <link href="time_manager/styles/colors/{{ color }}.css" rel="stylesheet" type="text/css" id="color_choice"/>
-    <link href="time_manager/images/favicons/{{ color }}.svg" rel="shortcut icon" type="image/x-icon" id="favicon_choice"/>
+    <link href="static/styles/fonts/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="static/styles/base.css" rel="stylesheet" type="text/css"/>
+    <link href="static/styles/help.css" rel="stylesheet" type="text/css"/>
+    <link href="static/styles/tables.css" rel="stylesheet" type="text/css"/>
+    <link href="static/styles/profile.css" rel="stylesheet" type="text/css"/>
+    <link href="static/styles/authorisation.css" rel="stylesheet" type="text/css"/>
+    <link href="static/styles/about.css" rel="stylesheet" type="text/css"/>
+    <link href="static/styles/themes/{{ theme }}.css" rel="stylesheet" type="text/css" id="theme_choice"/>
+    <link href="static/styles/colors/{{ color }}.css" rel="stylesheet" type="text/css" id="color_choice"/>
+    <link href="static/images/favicons/{{ color }}.svg" rel="shortcut icon" type="image/x-icon" id="favicon_choice"/>
     {#         Скрипты        #}
-    <script type="text/javascript" src="time_manager/scriptes/library/Forge.js"></script>
-    <script type="text/javascript" src="time_manager/scriptes/library/jQuery.js"></script>
-    <script type="text/javascript" src="time_manager/scriptes/library/Sortable.js"></script>
-    <script type="text/javascript" src="time_manager/scriptes/requests.js"></script>
-    <script type="text/javascript" src="time_manager/scriptes/encrypt.js"></script>
-    <script type="text/javascript" src="time_manager/scriptes/actions.js"></script>
-    <script type="text/javascript" src="time_manager/scriptes/profile.js"></script>
-    <script type="text/javascript" src="time_manager/scriptes/table_day.js"></script>
-    <script type="text/javascript" src="time_manager/scriptes/table_month.js"></script>
-    <script type="text/javascript" src="time_manager/scriptes/lists.js"></script>
-    <script type="text/javascript" src="time_manager/scriptes/authorise.js"></script>
-    <script type="text/javascript" src="time_manager/scriptes/main.js"></script>
+    <script type="text/javascript" src="static/scriptes/library/Forge.js"></script>
+    <script type="text/javascript" src="static/scriptes/library/jQuery.js"></script>
+    <script type="text/javascript" src="static/scriptes/library/Sortable.js"></script>
+    <script type="text/javascript" src="static/scriptes/requests.js"></script>
+    <script type="text/javascript" src="static/scriptes/encrypt.js"></script>
+    <script type="text/javascript" src="static/scriptes/actions.js"></script>
+    <script type="text/javascript" src="static/scriptes/profile.js"></script>
+    <script type="text/javascript" src="static/scriptes/table_day.js"></script>
+    <script type="text/javascript" src="static/scriptes/table_month.js"></script>
+    <script type="text/javascript" src="static/scriptes/lists.js"></script>
+    <script type="text/javascript" src="static/scriptes/authorise.js"></script>
+    <script type="text/javascript" src="static/scriptes/main.js"></script>
     <title>Time Manager</title>
 </head>
 
@@ -45,7 +45,7 @@
                 <div class="nickname">{{ login }}</div>
                 <picture class="avatar" {{ avatar|safe }}></picture>
                 <svg id="set_icon">
-                    <use xlink:href="time_manager/images/sprites.svg#sprite_set_icon"></use>
+                    <use xlink:href="static/images/sprites.svg#sprite_set_icon"></use>
                 </svg>
             </a>
         </span>

@@ -1,13 +1,11 @@
-from werkzeug.security import check_password_hash, generate_password_hash, gen_salt
 import sqlite3
+from werkzeug.security import check_password_hash, generate_password_hash, gen_salt
 from modules.security.crypting import decrypt, set_sum, get_link, escepinator
+from modules.dirs import db_path
 
 
 class User(object):
-    if __name__ == "__main__":
-        __conn = sqlite3.connect(f"../databases/schedule.db", check_same_thread=False)
-    else:
-        __conn = sqlite3.connect(f"databases/schedule.db", check_same_thread=False)
+    __conn = sqlite3.connect(f"{db_path}/schedule.db", check_same_thread=False)
     __cur = __conn.cursor()
     __exe = __cur.execute  # Создать одиночный запрос
     __scr = __cur.executescript  # Создать скрипт
@@ -310,10 +308,10 @@ class User(object):
         """Стирание всех пользователей"""
         User.__exe("SELECT login FROM users")
         import os
-        for the_file in os.listdir('images/avatars'):
-            file_path = os.path.join('images/avatars', the_file)
+        for the_file in os.listdir('static/images/avatars'):
+            file_path = os.path.join('static/images/avatars', the_file)
             if os.path.isfile(file_path):
-                os.unlink(file_path)
+                os.remove(file_path)
         log_list = User.__all()
         if len(log_list) > 0:
             for log in log_list:

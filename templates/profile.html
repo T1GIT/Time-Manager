@@ -15,7 +15,7 @@
         <div id="btn_change_email" onmousedown="toggle_set_menu($('#menu_edit_email'))">Почта</div>
         <div id="btn_change_pass" onmousedown="toggle_set_menu($('#menu_edit_psw'))">Пароль</div>
         <svg class="hat_float">
-            <use xlink:href="time_manager/images/sprites.svg#sprite_float_edit"></use>
+            <use xlink:href="static/images/sprites.svg#sprite_float_edit"></use>
         </svg>
     </span>
     <span id="avatar"
@@ -28,12 +28,12 @@
             if (user_data.login === undefined) {alert('Смена аватара недоступна для гостевой записи')}
             else {$('#get_file').click()}
         ">
-            <use xlink:href="time_manager/images/sprites.svg#sprite_btn_change"></use>
+            <use xlink:href="static/images/sprites.svg#sprite_btn_change"></use>
         </svg>
         <input id="get_file" type="file" accept="image/*" onchange="onchange_get_file($(this)[0].files[0])">
         <hr>
         <svg id="remove_avatar" onmousedown="click_remove_avatar()">
-            <use xlink:href="time_manager/images/sprites.svg#sprite_btn_remove"></use>
+            <use xlink:href="static/images/sprites.svg#sprite_btn_remove"></use>
         </svg>
     </span>
     <span id="exit">
@@ -45,7 +45,7 @@
         </div>
         <div id="btn_delete_profile" onmousedown="toggle_set_menu($('#menu_confirm_delete'))">Удалить</div>
         <svg class="hat_float">
-            <use xlink:href="time_manager/images/sprites.svg#sprite_float_exit"></use>
+            <use xlink:href="static/images/sprites.svg#sprite_float_exit"></use>
         </svg>
     </span>
 </div>
@@ -57,7 +57,7 @@
         <input id="set_psw" placeholder="Новый пароль" type="password" oninput="act_field($(this), input_set_psw)">
         <button id="show_set_psw" type="button" onmousedown="click_show_psw($(this).prev())">
             <svg>
-                <use xlink:href="time_manager/images/sprites.svg#sprite_btn_show"></use>
+                <use xlink:href="static/images/sprites.svg#sprite_btn_show"></use>
             </svg>
         </button>
     </form>
@@ -84,7 +84,7 @@
         >
         <button id="erase_set_email" type="button" onmousedown="click_erase($(this).prev()); return false">
             <svg id="email_btn_erase">
-                <use xlink:href="time_manager/images/sprites.svg#sprite_btn_erase"></use>
+                <use xlink:href="static/images/sprites.svg#sprite_btn_erase"></use>
             </svg>
         </button>
     </form>

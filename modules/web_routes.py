@@ -8,10 +8,13 @@ from flask_script import Manager, Shell
 
 from modules.schedule_access import *
 from modules.security.crypting import get_link
+from modules.dirs import temp_path, stat_path, av_path, keys_path
+from config import Config
 
 
-tm = Flask(__name__, template_folder="../templates", static_folder="../../time_manager")
-tm.config.from_object('config.Config')
+tm = Flask(__name__, template_folder=temp_path, static_folder=stat_path)
+
+tm.config.from_object(Config)
 mail = Mail(tm)
 manager = Manager(tm)
 users = {}
@@ -39,21 +42,26 @@ def user_req(url, img=None):
                         else: temp = func(users[session['login']])
                         if temp: return temp
                         else: return jsonify(True)
-                    else: return jsonify('Wrong assignment')
+                    else: return redirect('/')
                 except KeyError: return redirect('/')
-            else: return jsonify('Wrong assignment')
+            else: return redirect('/')
         tm.add_url_rule(url, func.__name__, wrapper, methods=['POST'])
     return wrap
 
 
-# @tm.errorhandler(505)
-# def handler_assignment(error):
-#     return '<h1 style="text-align: center">Неверная подпись запроса</h1>'
-#
-#
-# @tm.errorhandler(502)
-# def handler_assignment(error):
-#     return '<h1 style="text-align: center">Неверная подпись запроса</h1>'
+errors = {
+    400: 'Синтаксическая ошибка в запросе',
+    401: 'Неавторизованный доступ запрещен',
+    403: 'Неавторизованный доступ запрещен',
+    404: 'Русурс не найден',
+    405: 'Русурс не найден',
+    502: 'Сервер недоступен'
+}
+
+
+for code, info in errors.items():
+    def f(error): return render_template('error.html', error=info, desc=error)
+    tm._register_error_handler(None, code, f)
 
 
 col = {'red': '#ff6464', 'blue': '#6464ff', 'green': '#46aa46', 'purple': '#b450b4', 'sky': '#55c0bb', 'black': '#000', 'white': '#000'}
@@ -106,7 +114,7 @@ def req_change_log(now, new):
 @user_req('/change_email')
 def req_change_email(now, data):
     """Изменение имени пользователя"""
-    try: os.rename(f'images/avatars/{now.email}.png', f'images/avatars/{data}.png')
+    try: os.rename(f'{av_path}\\{now.email}.png', f'{av_path}\\{data}.png')
     except FileNotFoundError: pass
     now.change_email(data)
 
@@ -123,17 +131,15 @@ def req_change_pass(now, data):
 @user_req('/change_avatar', 'img')
 def req_change_avatar(now, file):
     """Изменение аватарки"""
-    temp_path = f'images/avatars/{now.email}.png'
-    open(temp_path, 'wb').write(file.read())
+    open(f'{av_path}\\{now.email}.png', 'wb').write(file.read())
 
 
 @user_req('/delete_avatar')
 def req_delete_avatar(now):
     """Удаление аватарки"""
-    try: os.unlink(f'images/avatars/{now.email}.png')
-    except FileNotFoundError: pass
-    try: os.mkdir('images/avatars/')
-    except FileExistsError: pass
+    avatar_path = f'{av_path}\\{now.email}.png'
+    if os.path.isfile(avatar_path): os.remove(avatar_path)
+    os.makedirs(f'{av_path}', exist_ok=True)
 
 
 @user_req('/logout')
@@ -148,8 +154,8 @@ def req_logout(now):
 @user_req('/delete_user')
 def req_delete_user(now):
     """Удаление учётной записи"""
-    temp_path = f'images/avatars/{now.log}.png'
-    if os.path.isfile(temp_path): os.remove(temp_path)
+    avatar_path = f'{av_path}/{now.log}.png'
+    if os.path.isfile(avatar_path): os.remove(avatar_path)
     now.del_user()
     users.pop(now.log)
     session.pop('login')
@@ -313,7 +319,7 @@ def req_login():
             "email": now.email,
             "theme": now.theme,
             "color": now.color,
-            "avatar": os.path.isfile(f'images/avatars/{now.email}.png'),
+            "avatar": os.path.isfile(f'{av_path}\\{now.email}.png'),
             "activated": now.activated,
             "day": render_template('day.html', table_day=now.ret_day()),
             "month": render_template('month.html', table_month=now.ret_month()),
@@ -342,7 +348,7 @@ def req_register():
 @tm.route('/get_key', methods=['POST'])
 def req_get_key():
     """Отправка ключа"""
-    return jsonify(open('modules/security/public_key.pem').read())
+    return jsonify(open(f"{keys_path}/public_key.pem", "r").read())
 
 
 @tm.route('/check_user', methods=['POST'])
@@ -368,8 +374,8 @@ def page_home():
                 restore = 1
                 now._restore = 0
             else: restore = 0
-            if os.path.isfile(f'images/avatars/{now.email}.png'):
-                avatar = f'style="background-image: url(time_manager/images/avatars/{now.email}.png)"'
+            if os.path.isfile(f'{av_path}\\{now.email}.png'):
+                avatar = f'style="background-image: url(static\\{now.email}.png)"'
             else: avatar = ''
             data = {
                 'login':        log,

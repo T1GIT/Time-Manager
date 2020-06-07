@@ -6,17 +6,22 @@
 ## PRAGMATIC FRIEND (ﾉ◕ヮ◕)ﾉ 
 ## TRIIKSTER (❍ᴥ❍ʋ) 
 
-
-#### Required Modules:
-1) Flask (full-packet)
-2) Flask-Mail
-3) Flask-Script
-4) Werkzeug
-5) Pycryptodome
-## Instructions:
-1. Install [Python](https://www.python.org/ftp/python/3.8.3/python-3.8.3.exe) at least version 3.7
-2. Run start.bat
+## Run:
+#### Basic way:
+Just run _**run.exe**_
+#### Running source files:
+1. Install [_Python_](https://www.python.org/) at least version 3.7
+2. Run _**start.bat**_
+##
+###Used sources
+* Python 3.8.3
+#####Python Modules
+* Flask
+* Flask-Mail
+* Flask-Script
+* Werkzeug
+* Pycryptodome
 
 ###[Time Manger.com](http://127.0.0.1:5000/)
-##### Version 1.5.0
-###### 04.06.2020
+##### Version 2.0
+###### 07.06.2020

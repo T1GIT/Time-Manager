@@ -1,0 +1,153 @@
+#page_about {overflow: hidden}
+#developers * {padding: 0; text-align: center}
+
+#developers {
+    margin: 4vh auto;
+    height: max-content;
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 60px 60px auto;
+    column-gap: 6%;
+    row-gap: 4vh;
+}
+
+#dev_head {
+    font-size: 36px;
+    text-align: center;
+    grid-column: 1/6;
+    width: 60%;
+    min-width: 660px;
+    height: 60px;
+    justify-self: center;
+    border-radius: 30px;
+}
+
+#dev_head:hover {transform: scale(1.05)}
+
+#dev_head p {
+    position: relative;
+    margin: 0;
+    top: 5px;
+}
+
+.card_head {
+    font-size: 25px;
+    line-height: 12px;
+    text-align: center;
+    padding: 0;
+    height: 60px;
+    border-radius: 30px;
+}
+
+#developers .card_head:hover {transform: scale(1.1)}
+#developers .card {
+    padding: 0 10px 10px;
+    box-sizing: border-box;
+}
+
+#developers .card p {margin: 2vh auto}
+#developers .card p:hover {transform: scale(1.1)}
+
+#Rasim {line-height: 30px}
+#Rasim p {margin: 0}
+
+#developers .card {border-radius: 30px}
+#developers .card:hover {transform: scale(1.05)}
+
+#developers img {
+    margin: 14% auto 10px;
+    width: 80%;
+    border-radius: 50%;
+    justify-self: center;
+    pointer-events: none;
+}
+
+#developers .card:hover img{
+    border-radius: 25%;
+    transform: scale(1.1);
+}
+
+#developers .card_title {
+    font-size: 1.3em;
+    text-align: center;
+    position: absolute;
+    left: calc(50% - 70px);
+    top: 60px;
+    width: 140px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#developers #Rasim_title, #developers #Grisha {font-size: 1.2em !important}
+#developers #Dima {font-size: 1.5em !important}
+
+#developers #Rasim_title {top: 50px}
+
+#developers .card hr {
+    margin: 1vh auto;
+    border: none;
+    width: 60%;
+    height: 4px;
+    border-radius: 10px;
+}
+
+#developers .card svg {
+    pointer-events: visible;
+    cursor: pointer;
+	fill: white;
+	width: 28px;
+	height: 28px;
+	margin: 8px 2% 0;
+}
+
+#developers .card svg:hover {transform: scale(1.2)}
+#developers .card, #developers .card_head {position: relative; bottom: 0; overflow: hidden}
+
+@media (max-width: 1650px) {  #developers {width: 80%;}  }
+@media (max-width: 1450px) {  #developers {width: 90%;}  }
+@media (max-width: 1300px) {  #developers {column-gap: 4%}  }
+@media (max-width: 1150px) {  #developers {width: 100%}  }
+@media (max-width: 1050px) {  #developers {column-gap: 2%}  }
+
+@media (max-height: 780px) {
+    #developers {row-gap: 3vh; margin: 2vh auto;}
+    #developers .card hr {margin: 2vh auto}
+}
+@media (max-height: 720px) {
+    #developers img {margin: 15px auto 0}
+    #developers .card {padding: 0 10px 5px}
+    #developers .card hr {margin: 1vh auto}
+    #developers .card p {margin: 3vh 0}
+    #dev_head {height: 0; opacity: 0}
+    #developers .card, #developers .card_head {bottom: 65px}
+    #developers .card:hover img {transform: scale(1.05)}
+}
+@media (max-height: 650px) {
+    .card_head {height: 0; opacity: 0}
+    #developers {row-gap: 5vh}
+    #developers .card, #developers .card_head {bottom: 135px}
+    #developers .card {padding: 0 10px 5px}
+    #developers .card hr {margin: 0 auto}
+    #developers .card p {margin: 2vh 0}
+    #developers .card_title {opacity: 1}
+    #developers .card:hover .card_title {opacity: 0}
+    #developers .card:hover img {filter: none}
+}
+@media (max-height: 520px) {
+    #developers {row-gap: 2vh}
+}
+/*-----------------Анимации--------------------*/
+/*-----------------Возврат---------------------*/
+#developers, #developers * {transition: 0.2s ease-out}
+/*--------------------------------------------*/
+/*-----------------При наведени---------------*/
+#developers *:hover {transition: 0.1s ease}
+/*--------------------------------------------*/
+/*-----------------При нажатии----------------*/
+#developers .card_head:active, #dev_head:active, #developers .card_head p:active
+{transform: scale(1); transition: 0.05s ease-out}
+#developers .card:hover p:active {transform: scale(1); transition: 0.05s ease-out}
+#developers .card:hover img:active, #developers .card:hover svg:active {transform: scale(1); transition: 0.05s ease-out}
+/*--------------------------------------------*/
+/*--------------------------------------------*/

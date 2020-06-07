@@ -1,7 +1,7 @@
 <div class="body lists">
     <button id="add_list" onmousedown="click_add_list($(this))">
         <svg>
-            <use xlink:href="time_manager/images/sprites.svg#sprite_btn_add"></use>
+            <use xlink:href="static/images/sprites.svg#sprite_btn_add"></use>
         </svg>
     </button>
     <a class="alert"
@@ -19,7 +19,7 @@
                     <button type="button" class="del_list"
                             onmousedown="del_list($(this).closest('.back_back'))"
                     >
-                        <svg><use xlink:href="time_manager/images/sprites.svg#sprite_btn_remove"></use></svg>
+                        <svg><use xlink:href="static/images/sprites.svg#sprite_btn_remove"></use></svg>
                     </button>
                 </form>
                     {% for task in lists[name] %}
@@ -33,13 +33,13 @@
                     <button class="del_list_task" type="button"
                             onmousedown="del_list_task($(this).parent())"
                     >
-                        <svg><use xlink:href="time_manager/images/sprites.svg#sprite_btn_del_task"></use></svg>
+                        <svg><use xlink:href="static/images/sprites.svg#sprite_btn_del_task"></use></svg>
                     </button>
                 </form>
                     {% endfor %}
                 <button class="add_list_task" type="button" onmousedown="click_add_list_task($(this))">
                     <svg>
-                        <use xlink:href="time_manager/images/sprites.svg#sprite_btn_add"></use>
+                        <use xlink:href="static/images/sprites.svg#sprite_btn_add"></use>
                     </svg>
                 </button>
                 <a class="alert"
