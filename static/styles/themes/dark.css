@@ -16,7 +16,7 @@ header .center:hover, header .center:active {background: rgba(0, 0, 0, 0.1)}
 @media (min-width: 1400px) {header .right:hover, header .right:active {background: rgba(0, 0, 0, 0.1)}}
 footer .right:hover, footer .right:active {background: rgba(0, 0, 0, 0.1)}
 #edit:hover div:hover, #exit:hover div:hover, #edit:hover div:active, #exit:hover div:active {background: rgba(0, 0, 0, 0.1)}
-#set_login:hover {background: rgba(0, 0, 0, 0.3)}
+#set_login:hover {background: rgba(0, 0, 0, 0.2)}
 #set_login:focus {background-color: #2c2c2c}
 .time.input input::placeholder {color: rgba(0, 0, 0, 0.5)}
 #profile_menu menu button.yes, .del_list {background-color: #af3b3b !important;}

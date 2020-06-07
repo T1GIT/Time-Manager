@@ -160,7 +160,7 @@ function onblur_set_login(field) {
         field.val(user_data.login);
         submit_warn(field.parent());
     }
-    else {
+    else if (user_data.login !== undefined) {
         send('/change_log', [user_data.login, field.val()]);
         user_data.login = field.val()
     }
