@@ -1,6 +1,5 @@
 from os import makedirs, path
 
-assert path.isdir(path.abspath('static')), 'Folder "static" containing resources is not exist'
 keys_path = path.abspath('modules/security/keys')
 db_path = path.abspath('databases')
 temp_path = path.abspath('templates')
