@@ -374,7 +374,7 @@ def page_home():
                 now._restore = 0
             else: restore = 0
             if os.path.isfile(f'{av_path}\\{now.email}.png'):
-                avatar = f'style="background-image: url(static\\{now.email}.png)"'
+                avatar = f'style="background-image: url(static\\avatars\\{now.email}.png)"'
             else: avatar = ''
             data = {
                 'login':        log,
