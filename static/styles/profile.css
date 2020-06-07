@@ -256,8 +256,6 @@ aside menu input+button:hover {transform: scale(1)}
 aside menu input+button:hover svg {transform: scale(0.9)}
 
 menu button svg {
-	fill: white;
-	stroke: white;
 	width: 35px;
 	height: 35px;
 	position: relative;

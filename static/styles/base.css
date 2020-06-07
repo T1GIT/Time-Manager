@@ -246,7 +246,7 @@ header *, footer *, header .right .avatar::before {transition: 0.2s ease-out}
 	transition-timing-function: linear !important;
 	transition-property: background, border, color, fill, opacity, top !important;
 }
-svg.change_theme {transition-duration: 0.05s !important;}
+#profile_menu #hat svg.change_theme {transition-duration: 0.05s !important;}
 /*--------------------------------------------*/
 /*-----------------При наведени(время)--------*/
 header .left:hover, header .center:hover, header .right:hover, footer span:hover {
