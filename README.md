@@ -8,7 +8,7 @@
 
 ## Run:
 #### Basic way:
-Just run __run.exe__
+1.  Just run __run.exe__
 #### Running source files:
 1. Install [_Python_]("https://www.python.org/") at least version 3.7
 2. Run __start.bat__
