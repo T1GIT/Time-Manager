@@ -13,7 +13,6 @@ from config import Config
 
 
 tm = Flask(__name__, template_folder=temp_path, static_folder=stat_path)
-
 tm.config.from_object(Config)
 mail = Mail(tm)
 manager = Manager(tm)
