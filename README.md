@@ -2,8 +2,8 @@
 #
 ## (づ￣ ³￣)づ  >>> T1MON
 ## ψ(▼へ▼メ) >>> ATTILENE
-## ┌(ಠ_ಠ)┘ >>>>> MACMILLAN 
-## (ﾉ◕ヮ◕)ﾉ >>>>>> PRAGMATIC FRIEND 
+## ┌(ಠ_ಠ)┘ >>>> MACMILLAN 
+## (ﾉ◕ヮ◕)ﾉ >>>> PRAGMATIC FRIEND 
 ## (❍ᴥ❍ʋ) >>>>> TRIIKSTER
 
 ## Run:
