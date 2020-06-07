@@ -1,10 +1,10 @@
 ![Cover](https://github.com/T1GIT/time_manager/blob/master/static/images/cover.jpg?raw=true)
 #
-## T1MON (づ￣ ³￣)づ
-## ATTILENE ψ(▼へ▼メ)
-## MACMILLAN ┌(ಠ_ಠ)┘ 
-## PRAGMATIC FRIEND (ﾉ◕ヮ◕)ﾉ 
-## TRIIKSTER (❍ᴥ❍ʋ)
+## (づ￣ ³￣)づ | T1MON
+## ψ(▼へ▼メ) | ATTILENE
+## ┌(ಠ_ಠ)┘ | | | MACMILLAN 
+## (ﾉ◕ヮ◕)ﾉ | | | | PRAGMATIC FRIEND 
+## (❍ᴥ❍ʋ) | | | | TRIIKSTER
 
 ## Run:
 #### Basic way:
