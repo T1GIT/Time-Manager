@@ -63,7 +63,7 @@ for code, info in errors.items():
     tm._register_error_handler(None, code, f)
 
 
-col = {'red': '#ff6464', 'blue': '#6464ff', 'green': '#46aa46', 'purple': '#b450b4', 'sky': '#55c0bb', 'black': '#000', 'white': '#000'}
+col = {'red': '#eb7575', 'blue': '#7188c7', 'green': '#77bd86', 'purple': '#b478c2', 'sky': '#41aab0', 'black': '#2c2c2c', 'white': '#2c2c2c'}
 
 
 def shell_context(): return dict(app=tm, os=os, sys=sys)
@@ -113,7 +113,7 @@ def req_change_log(now, new):
 @user_req('/change_email')
 def req_change_email(now, data):
     """Изменение имени пользователя"""
-    try: os.rename(f'{av_path}\\{now.email}.png', f'{av_path}\\{data}.png')
+    try: os.rename(f'{av_path}/{now.email}.png', f'{av_path}/{data}.png')
     except FileNotFoundError: pass
     now.change_email(data)
 
@@ -130,13 +130,13 @@ def req_change_pass(now, data):
 @user_req('/change_avatar', 'img')
 def req_change_avatar(now, file):
     """Изменение аватарки"""
-    open(f'{av_path}\\{now.email}.png', 'wb').write(file.read())
+    open(f'{av_path}/{now.email}.png', 'wb').write(file.read())
 
 
 @user_req('/delete_avatar')
 def req_delete_avatar(now):
     """Удаление аватарки"""
-    avatar_path = f'{av_path}\\{now.email}.png'
+    avatar_path = f'{av_path}/{now.email}.png'
     if os.path.isfile(avatar_path): os.remove(avatar_path)
     os.makedirs(f'{av_path}', exist_ok=True)
 
@@ -282,14 +282,14 @@ def req_restore(link):
 def req_check_restore():
     """Проверка активации"""
     temp = User.find_link(request.get_json())
-    if temp[3]: return req_send_restore(temp)
+    if temp[3]: return jsonify(True, temp[1])
     else: return jsonify(False, temp[1])
 
 
 @tm.route('/send_restore', methods=['POST'])
-def req_send_restore(temp=None):
+def req_send_restore():
     """Отправка сообщения для активации"""
-    if temp is None: temp = User.find_link(request.get_json())
+    temp = User.find_link(request.get_json())
     data = {
         'title': 'Восстановление пароля',
         'button': 'Изменить',
@@ -318,7 +318,7 @@ def req_login():
             "email": now.email,
             "theme": now.theme,
             "color": now.color,
-            "avatar": os.path.isfile(f'{av_path}\\{now.email}.png'),
+            "avatar": os.path.isfile(f'{av_path}/{now.email}.png'),
             "activated": now.activated,
             "day": render_template('day.html', table_day=now.ret_day()),
             "month": render_template('month.html', table_month=now.ret_month()),
@@ -373,8 +373,8 @@ def page_home():
                 restore = 1
                 now._restore = 0
             else: restore = 0
-            if os.path.isfile(f'{av_path}\\{now.email}.png'):
-                avatar = f'style="background-image: url(static\\avatars\\{now.email}.png)"'
+            if os.path.isfile(f'{av_path}/{now.email}.png'):
+                avatar = f'style="background-image: url(static/images/avatars/{now.email}.png)"'
             else: avatar = ''
             data = {
                 'login':        log,

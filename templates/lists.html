@@ -10,7 +10,7 @@
     {% for name in lists %}
         <div class="back_back">
             <div class="back">
-                <form class="title"  onsubmit="$(this).children('input').blur(); return false">
+                <form class="title" return false">
                     <input class="name" placeholder="Название" value="{{ name }}"
                            onfocus="save_name($(this).parent())"
                            onblur="blur_list_name($(this).parent())"

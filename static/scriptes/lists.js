@@ -62,9 +62,9 @@ function del_list_task(form) {
 
 
 function click_add_list(btn) {
-    let obj = $('<div class="back_back" style="height: 0; width: 0; line-height: 0; margin: 0; opacity: 0; pointer-events: none; transform: scale(0.6)">\n' +
+    let obj = $('<div class="back_back new" style="height: 0; width: 0; line-height: 0; margin: 0; opacity: 0; pointer-events: none; transform: scale(0.6)">\n' +
         '            <div class="back">\n' +
-        '                <form class="title" onsubmit="$(this).children(\'input\').blur(); return false">\n' +
+        '                <form class="title">\n' +
         '                    <input class="name" placeholder="Название"\n' +
         '                           onfocus="save_name($(this).parent())"\n' +
         '                           onblur="blur_list_name($(this).parent())"\n' +
@@ -132,7 +132,8 @@ function blur_list_name(form) {
             if (new_name !== '') {
                     receive('/add_list', function (data) {
                     if (data === 'exist') {
-                        del_list(back)
+                        del_list(back);
+                        console.log('new')
                     } else {
                         back.removeClass('new');
                         back.prev().prev('button').removeClass('new');
@@ -144,6 +145,7 @@ function blur_list_name(form) {
             receive('/change_list', function (data) {
                 if (data === 'exist') {
                     del_list(back);
+                    console.log('change')
                 }
             }, [old, new_name]);
         }

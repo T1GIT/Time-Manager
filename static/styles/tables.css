@@ -234,7 +234,7 @@ div.body {
 
 .list_task textarea {
     text-align: center;
-    margin: 5px 0;
+    margin: 0;
     padding: 5px 10px;
     resize: none;
     width: 380px;

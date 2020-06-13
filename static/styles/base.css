@@ -200,6 +200,63 @@ footer .left {
 footer .center {justify-self: center}
 footer .right {justify-self: end}
 /*--------------------------------------------*/
+/*--------------Сообщения-----------------*/
+#alert_back {
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	min-height: 400px;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+#alert_body {
+	transform: scale(1);
+	text-align: center;
+	padding: 0 20px;
+	width: 360px;
+	position: absolute;
+	top: calc(50% - 150px);
+	left: calc(50% - 200px);
+	border-radius: 20px;
+}
+
+#alert_back.hidden #alert_body {opacity: 0; transform: scale(0.5)}
+
+#alert_body p {
+	font-size: 1.2em;
+	padding: 0;
+	margin: 0 auto;
+	width: max-content;
+	line-height: 30px;
+	max-width: 360px;
+}
+
+#alert_body svg {
+	transform: scale(1);
+	z-index: 1001;
+	margin: 20px auto;
+	width: 80px;
+	height: 80px;
+	position: static;
+	pointer-events: visible;
+}
+
+#alert_body svg.bang {pointer-events: none}
+#alert_back.hidden #alert_body svg {transform: scale(0.5)}
+
+#alert_body button {
+	font-size: 1.2em;
+	margin: 20px 10px;
+	padding: 7px 0;
+	width: 150px;
+	border: none;
+	border-radius: 30px;
+}
+
+#alert_body svg:hover, #alert_body p:hover, #alert_body button:hover {transform: scale(1.1)}
+/*--------------------------------------------*/
 /*--------------Основной блок-----------------*/
 main {
 	display: none;
@@ -240,6 +297,9 @@ main.closed {
 /*-----------------Возврат(время)-------------*/
 header, footer {transition: background-color 0.15s}
 header *, footer *, header .right .avatar::before {transition: 0.2s ease-out}
+#alert_body, #alert_body * {transition: 0.2s ease-out}
+#alert_body svg.bang {transition: 0.2s cubic-bezier(.4,.4,.6, 2) 0.1s}
+#alert_body {transition-timing-function: cubic-bezier(.6,.5,.7,1.5)}
 @media (max-width: 1400px) {  header .right:hover * {transition: 0.3s ease-in-out}	}
 .change_theme, .change_theme *::placeholder {
 	transition-duration: 0.2s !important;
@@ -251,6 +311,7 @@ header *, footer *, header .right .avatar::before {transition: 0.2s ease-out}
 /*-----------------При наведени(время)--------*/
 header .left:hover, header .center:hover, header .right:hover, footer span:hover {
 	transition: 0.1s ease;}
+#alert_body button:hover {transition: 0.1s ease}
 @media (max-width: 1400px) {
 	header .right:hover svg {transition: 0.2s ease}
 	header .right:hover .avatar {transition: 0.2s ease-out}}
@@ -262,6 +323,7 @@ header .left:hover, header .center:hover, header .right:hover, footer span:hover
 header .left:active, header .center:active, header .right:active, footer span:active {transform: scale(1); transition: 0.05s ease-out}
 header .left:active {transform: skewX(-10deg)}
 header .right:active {transform: scale(0.95)}
+#alert_body button:active, #alert_body p:active, #alert_body svg:active {transform: scale(1); transition: 0.05s ease-out}
 @media (max-width: 1400px) {header .right:active {transform: scale(0.85)}}
 /*--------------------------------------------*/
 /*--------------------------------------------*/

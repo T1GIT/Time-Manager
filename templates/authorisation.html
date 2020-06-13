@@ -5,8 +5,7 @@
     <form id="user" onkeydown="if (event.keyCode === 13) {submit_warn($(this)); return false}">
         <label for="form_login" class="empty" autofocus></label>
         <input id="form_login" name="login"
-               placeholder="Подождите ..." type="email"
-               autocomplete="on" disabled
+               placeholder="Подождите ..." type="email" disabled
                title="Наберите уникальный свой уникальный никнейм"
                oninput="act_field($(this), input_login, check_empty)"
         >
@@ -40,7 +39,8 @@
         </button>
 
         <label for="form_repass" class="empty"></label>
-        <input class="hidden" name="password" id="form_repass" placeholder="Пароль ещё раз" type="password" disabled
+        <input class="hidden" name="password" id="form_repass"
+               placeholder="Пароль ещё раз" type="password" disabled
                oninput="act_field($(this), check_repass)"
         >
         <button id="show_repass" type="button" onmousedown="click_show_repsw($(this).prev())">

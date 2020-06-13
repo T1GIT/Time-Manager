@@ -58,7 +58,7 @@ aside {
     overflow: hidden;
 }
 
-#avatar:hover {transform: scale(1.15)}
+#avatar:hover, #avatar.drop {transform: scale(1.15)}
 
 #avatar_inside {
     background-image: url(../images/default.jpg);
@@ -70,12 +70,12 @@ aside {
     position: absolute;
     top: -1px; left: -1px;
     border-radius: 50%;
+    pointer-events: none;
 }
 
-#avatar:hover #avatar_inside {transform: scale(1.03)}
+#avatar:hover #avatar_inside, #avatar.drop #avatar_inside {transform: scale(1.03)}
 /*---------------Внутренности--------------------*/
 #avatar svg, #avatar hr {position: absolute; transform: scale(0.7); opacity: 0; z-index: 20}
-#avatar svg {pointer-events: visible}
 
 #change_avatar {
     width: 43px;
@@ -112,9 +112,15 @@ aside {
     background: transparent;
 }
 
-#avatar:hover svg, #avatar:hover hr {transform: scale(1); opacity: 1}
-#avatar:hover svg:hover {transform: scale(1.2)}
+#avatar:hover #change_avatar, #avatar:hover #remove_avatar, #avatar:hover hr {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: visible
+}
+
 #avatar:hover hr {width: 51px; left: 25px}
+
+#avatar:hover #change_avatar:hover, #avatar:hover #remove_avatar:hover {transform: scale(1.2)}
 
 #avatar.none #change_avatar {
     width: 55px;
@@ -125,6 +131,17 @@ aside {
 
 #avatar.none hr, #avatar.none #remove_avatar {opacity: 0; pointer-events: none}
 #get_file {display: none}
+
+#avatar #drop_zone {
+    pointer-events: none !important;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+#avatar.drop #drop_zone {transform: scale(1); opacity: 1}
 /*----------------------------------------------*/
 /*----------------------------------------------*/
 /*---------------Правая часть--------------------*/
@@ -336,7 +353,7 @@ aside form svg {transition: 0.1s ease-in-out}
 /*-----------------При наведении---------------*/
 #hat *:hover {transition: 0.1s ease}
 #hat #avatar:hover *, #hat #avatar:hover {transition: 0.15s ease-in-out}
-#hat #avatar:hover svg:hover {transition: 0.15s ease}
+#hat #avatar:hover svg:hover, #hat #avatar.drop #drop_zone {transition: 0.15s ease}
 #hat #avatar:hover #avatar_inside, #hat #avatar:hover::before {transition: 0.3s ease-in-out}
 aside menu div.theme:hover::before {transition: 0.1s ease-in}
 aside menu div.theme:hover button:hover {transition: 0.1s ease}

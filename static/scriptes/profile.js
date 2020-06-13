@@ -24,10 +24,14 @@ function toggle_aside(menu) {
 function hide_click (menu) {
     $('body').one('mousedown', function hide_menu(event){
         if (menu.hasClass('opened')) {
+            let temp_al = $('#alert_back');
             if ($('header .right').has(event.target).length === 0 &&
                 !$('#button_authorisation').is(event.target) &&
                 menu.has(event.target).length === 0 &&
-                !menu.is(event.target)) {
+                temp_al.has(event.target).length === 0 &&
+                !menu.is(event.target) &&
+                !temp_al.is(event.target)
+            ) {
                 toggle_aside(menu)
             } else hide_click(menu)
         }
@@ -53,14 +57,18 @@ function toggle_set_menu(set_menu) {
                 set_menu.stop().slideDown(time, function () {
                     set_menu.removeAttr('style').css({display: 'block'});
                 });
-                set_menu.addClass('opened').find('input').focus();
+                set_menu.addClass('opened')
             }).removeClass('opened');
         }
         else {
             set_menu.stop().slideDown(time, function () {
                 set_menu.removeAttr('style').css({display: 'block'})}).addClass('opened')
         }
-        setTimeout(function () {set_menu.find('input').focus()}, close_time(set_menu));
+        setTimeout(function () {
+            if (set_menu.children('.nonactive').length === 0) {
+                set_menu.find('input').focus()
+            }
+        }, close_time(set_menu));
     }
 }
 
@@ -69,18 +77,18 @@ function clear_fields() {
     inputs.prev('label').removeClass('show');
     warning(inputs);
     $('#authorisation span, header .right').click();
+    inputs.removeClass('fill').val('');
+    change_auth('empty');
     toggle_aside($('aside.opened'));
-    setTimeout(function () {
-        inputs.removeClass('fill').val('');
-        change_auth('empty');
-    }, close_time('aside.closed'))
-
 }
 
 function act_field(field, func, empty_func=null) {
     if (field.val() !== '') {
-        field.addClass('fill');
-        func(field)
+        if ($('#alert_back').length === 0) {
+            field.addClass('fill');
+            func(field)
+        }
+        else {field.val('')}
     }
     else {
         field.removeClass('fill');
@@ -139,52 +147,62 @@ function logout() {
 // Изменение никнейма
 function input_set_login(in_set_log) {
     let temp = in_set_log.val();
+    $('div.nickname').text(temp);
+    in_set_log.data('new', temp);
     if (temp === '') {warning(in_set_log, 'Введите никнейм')}
     else if (temp === user_data.login) {warning(in_set_log, 'Ваш никнейм', 'achive')}
     else if (temp.length <= 33) {
-        receive('/check_user', function (data) {
-            if (data) {warning(in_set_log, 'Никнейм занят', 'warning')}
-            else {
-                $('header .right a div.nickname').text(temp);
-                warning(in_set_log, 'Никнейм свободен', 'achive');
-            }
-        })
+        if (user_data.login !== undefined) {
+            receive('/check_user', function (data) {
+                if (data) {warning(in_set_log, 'Никнейм занят', 'warning')}
+                else {warning(in_set_log, 'Никнейм свободен', 'achive')}
+            })
+        }
+        else {warning(in_set_log, 'Никнейм свободен', 'achive')}
     }
     else {warning(in_set_log, 'Длина никнейма не может превышать 33 символа', 'warning')}
 }
 
 function onblur_set_login(field) {
-    if (field.prev().hasClass('warning') ||
-        field.prev().hasClass('empty') ||
-        user_data.login === field.val()) {
-        field.val(user_data.login);
-        submit_warn(field.parent());
+    let temp = field.data('new');
+    if (!field.prev().hasClass('warning') &&
+        !field.prev().hasClass('empty') &&
+        !user_data.login !== temp &&
+        user_data.login !== undefined &&
+        temp
+    )
+    {
+        send('/change_log', [user_data.login, temp]);
+        user_data.login = temp
     }
-    else if (user_data.login !== undefined) {
-        send('/change_log', [user_data.login, field.val()]);
-        user_data.login = field.val()
+    else {
+        $('div.nickname').text(user_data.login);
     }
     warning(field);
 }
 
 // Добавление/смена аватара
+function drop(area, event) {
+    onchange_get_file(event.dataTransfer.files[0]);
+    $(area).removeClass('drop');
+}
+
 function onchange_get_file(file) {
     if (file) {
         let size = ((file.size) / 1024 / 1024).toFixed(1);
-        if (size <= 30) {
+        if (size > 50) {al_warn(`Объем данного файла (${size} МБ) превышает допустимый объём в 50 МБ`)}
+        else if (file.type.slice(0, 5) !== 'image') {al_warn(`Файл ${file.name} не является изображением`)}
+        else {
             reduceFileSize(file, 110, function (blob) {
                 let img = new FormData();
                 img.set('img', blob, `${user_data.email}.png`);
-                send_image(img, function () {
-                    $('#avatar_inside').css({'background-image': `url(${URL.createObjectURL(blob)})`});
-                    $('header .right picture').css({'background-image': `url(${URL.createObjectURL(blob)})`});
-                    $('#avatar').removeClass('none');
-                    $('#get_file').val('');
-                })
+                if (user_data.login !== undefined) {send_image(img)}
+                $('#avatar_inside').css({'background-image': `url(${URL.createObjectURL(blob)})`});
+                $('header .right picture').css({'background-image': `url(${URL.createObjectURL(blob)})`});
+                $('#avatar').removeClass('none');
+                $('#get_file').val('');
             });
-
         }
-        else {alert(`Объем данного файла (${size} МБ) превышает допустимый объём в 30 МБ`)}
     }
 }
 
@@ -197,28 +215,32 @@ function click_remove_avatar() {
 }
 
 // Кнопки
-function click_active(menu) {
+function click_active() {
     receive('/send_activation', function(data) {
         if (data === 'active') {
             $('#confirm_email').removeClass('nonactive');
             toggle_set_menu($('#menu_edit_email'))
         }
-        else {alert('На почту ' + data + ' выслано письмо для активации')}
+        else {al_sent('На почту ' + data + ' выслано письмо для активации')}
     })
 }
 
 function click_restore() {
     receive('/check_restore', function(data) {
-        if (data[0]) alert('На почту ' + data + ' выслано письмо для изменения пароля');
-        else {
-            let agree = confirm('Почта ' + data[1] + ' не подтверждена.\n' +
-                'Владелец данной почты сможет получить доступ к профилю\n' +
-                'Запросить восстановление пароля?');
-            if (agree) receive('/send_restore', function (data) {
-                alert('На почту ' + data + ' выслано письмо для изменения пароля');
-            }, $('#form_login').val())
+        if (data[0]) {
+            receive('/send_restore', function (email) {
+                    al_sent('На почту ' + email + ' выслано письмо для изменения пароля');
+                }, $('#form_login').val())
         }
-    }, $('#form_login').val())
+        else {
+            al_ask('Почта ' + data[1] + ' не подтверждена.\n' +
+                'Запросить восстановление пароля?', 'Отправить', function () {
+                receive('/send_restore', function (data) {
+                    al_sent('На почту ' + data + ' выслано письмо для изменения пароля');
+                }, $('#form_login').val())
+            });
+        }
+    }, $('#form_login').val());
 }
 
 function click_show_psw(field) {
@@ -246,10 +268,7 @@ function input_set_email(in_set_email) {
     let temp = in_set_email.val();
     if (/[a-zA-Z0-9-]+@([a-zA-Z]{2,10}[.]){1,3}(com|by|ru|cc|net|ws})$/.test(temp) && temp.length < 100) {
         receive('/check_user', function (data) {
-            if (user_data.login === undefined) {
-                warning(in_set_email, 'Смена почты гостевой записи невозможна', 'warning')
-            }
-            else if (user_data.email === temp) {
+            if (user_data.email === temp) {
                 if ($('#confirm_email').hasClass('nonactive')) {
                     warning(in_set_email, 'Почта не подтверждена', 'warning');
                 }
@@ -261,17 +280,30 @@ function input_set_email(in_set_email) {
                 warning(in_set_email, 'Почта занята', 'warning');
             }
             else {
-                receive('/change_email', null, temp);
-                warning(in_set_email, 'Почта изменена', 'achive');
-                $('#menu_edit_email, #confirm_email').addClass('nonactive');
-                $('#menu_edit_email').addClass('opened');
-                user_data.email = temp
+                in_set_email.data('new', temp);
+                warning(in_set_email, 'Почта свободна', 'achive');
             }
         }, temp)
     } else if (temp) {
         warning(in_set_email, 'Некорректный формат почты', 'warning');
     } else {
         warning(in_set_email)
+    }
+}
+
+function onblur_set_email(field) {
+    let temp = field.data('new');
+    field.data('new', undefined);
+    if (!field.prev().hasClass('warning') &&
+        !field.prev().hasClass('empty') &&
+        user_data.login !== undefined &&
+        temp !== user_data.email &&
+        temp)
+    {
+        receive('/change_email', null, temp);
+        warning(field, 'Почта изменена', 'achive');
+        $('#menu_edit_email, #confirm_email').addClass('nonactive');
+        user_data.email = temp
     }
 }
 
@@ -283,14 +315,31 @@ function input_set_psw(in_set_psw) {
     else if (temp.length < 8) { warning(in_set_psw, 'Длина пароля должна быть не меньше 8 символов', 'warning')}
     else if (!RegExp('[0-9]+').test(temp)) { warning(in_set_psw, 'Пароль должен содержать цифры', 'warning')}
     else if (!RegExp('[a-zA-Zа-яА-Я]+').test(temp)) { warning(in_set_psw, 'Пароль должен содержать буквы', 'warning')}
-    else if (user_data.login === undefined) {warning(in_set_psw, 'Смена пароля гостевой записи невозможна', 'warning')}
     else {
+        in_set_psw.data('new', temp);
+        let test = !RegExp('[a-zа-я0-9]+').test(temp);
+        let len = temp.length;
+        if (len < 11 && !test) {warning(in_set_psw, 'Ненадежный пароль', 'achive'); in_set_psw.prev('label').addClass('weak')}
+        else if (len < 16 || len < 11 && test) {warning(in_set_psw, 'Надежный пароль', 'achive')}
+        else if (len < 20 || len < 16 && test) {warning(in_set_psw, 'Очень надежный пароль', 'achive')}
+    }
+}
+
+function onblur_set_psw(field) {
+    let temp = field.data('new');
+    field.data('new', undefined);
+    if (!field.prev().hasClass('warning') &&
+        !field.prev().hasClass('empty') &&
+        user_data.login !== undefined &&
+        temp)
+    {
         receive('/check_user', function (data) {
             if (data) {
                 receive('/change_pass', function () {
-                    warning(in_set_psw, 'Пароль изменен', 'achive')
+                    warning(field, 'Пароль изменен', 'achive')
                 }, pack_psw(temp, salt))
             }
         }, user_data.login);
     }
+    warning(field);
 }

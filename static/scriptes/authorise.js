@@ -11,9 +11,7 @@ function warning(field, text='', type='empty') {
     let label = field.prev();
     if (label.hasClass('empty') || label.text() !== text) {
         if (label.hasClass('empty')) {
-            label
-                .text(text)
-                .css({
+            label.stop().text(text).css({
                     width: (30 + (text.length * 9)) + 'px'
                 });
             label.removeClass('warning achive weak empty').addClass(type);
@@ -21,7 +19,7 @@ function warning(field, text='', type='empty') {
         else {
             label.removeClass('warning achive weak empty').addClass(type);
             fade_change(label, function () {
-                label.text(text).stop().animate({
+                label.stop().text(text).animate({
                         width: (30 + (text.length * 9)) + 'px'
                 }, 100)
             })
@@ -54,14 +52,16 @@ function check_cor_pass() {
     else if (pass.length < 8) { warning(in_pass, 'Длина пароля должна быть не меньше 8 символов', 'warning')}
     else if (!RegExp('[0-9]+').test(pass)) { warning(in_pass, 'Пароль должен содержать цифры', 'warning')}
     else if (!RegExp('[a-zA-Zа-яА-Я]+').test(pass)) { warning(in_pass, 'Пароль должен содержать буквы', 'warning')}
-    else {let test = !RegExp('[a-zа-я0-9]+').test(in_pass.val());
+    else {
+        let test = !RegExp('[a-zа-я0-9]+').test(in_pass.val());
         let len = in_pass.val().length;
         if (len < 11 && !test) {warning(in_pass, 'Ненадежный пароль', 'achive'); in_pass.prev('label').addClass('weak')}
         else if (len < 16 || len < 11 && test) {warning(in_pass, 'Надежный пароль', 'achive')}
         else if (len < 20 || len < 16 && test) {warning(in_pass, 'Очень надежный пароль', 'achive')}
         toggle_repass('on');
         check_repass();
-        return true}
+        return true
+    }
     toggle_repass('off');
     return false
 }
@@ -88,7 +88,7 @@ function try_log() {
             receive('/check_password', function (data) {
                 if (data) {
                     warning(in_pass, 'Выполняется вход', 'achive');
-                    authorisation(in_login.val(), pswsalt)
+                    authorisation(in_login.val(), pswsalt);
                 } else if ($('#form_password').val() !== '') {
                     warning(in_pass, 'Неверный пароль', 'warning');
                 }
@@ -111,6 +111,7 @@ function try_reg() {
 function change_auth(mode) {
     let temp_menu = $('#authorisation_menu');
     if (temp_menu.hasClass(mode)) {return}
+    else {$('#form_password, #form_repass').attr('type', 'password')}
     if (temp_menu.hasClass('login')) {temp_menu.addClass(mode).removeClass('login')}
     else if (temp_menu.hasClass('register')) {temp_menu.addClass(mode).removeClass('register')}
     else if (temp_menu.hasClass('empty')) {
@@ -219,6 +220,7 @@ function authorisation(login, password) {
         setTimeout(function () {
             $('#authorisation, header .center, header .right').removeAttr('style')
         }, close_time('#authorisation'));
+        remove_advices();
         user_logined = true;
         clear_fields();
     }, [login, password, $('#checkbox_remember_me').is(':checked')]);
@@ -258,12 +260,12 @@ function click_show_repsw(field) {
     if (in_login.val().length <= 33) {
         receive('/check_user', function (data) {
             if (data) {
-                in_pass.focus();
                 warning(in_login, 'Пользователь существует', 'achive');
                 change_auth('login');
                 in_email.val('');
                 in_email.removeClass('fill');
                 salt = data[0];
+                in_pass.focus();
             } else {
                 change_auth('register');
                 warning(in_login, 'Никнейм свободен', 'achive');

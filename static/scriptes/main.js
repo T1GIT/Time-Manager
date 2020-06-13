@@ -35,7 +35,6 @@ manuals.m_theme.onload = function () {
     $('#m_theme').addClass('ready').children('.cover')[0].src = manuals.m_theme.src;
     setTimeout(function () {$('#m_theme .clock_load').hide()}, close_time($('#m_theme .clock_load')))};
 
-
 jQuery(document).ready(function () {
     // Плавное появление страницы
     $('body').css({opacity: 0}).animate({opacity: 1}, 1000);
@@ -128,6 +127,10 @@ jQuery(document).ready(function () {
             img.attr('src', manuals[this.id].src);
         }
     });
+    // Загрузка
+    $('#avatar, html').on('drag dragstart dragend dragover dragenter dragleave drop', function (e) {
+        e.preventDefault(); e.stopPropagation();
+    })
     // $('.back').each(function (index, element) {
     //     new Sortable(element, {
     //         animation: 200,

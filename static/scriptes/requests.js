@@ -30,7 +30,7 @@ function send(url, data, success=null, async=true) {
     });
 }
 
-function send_image(img, func) {
+function send_image(img) {
     // Отправка изображения
     $.ajax({
         url: '/change_avatar',
@@ -39,7 +39,6 @@ function send_image(img, func) {
         processData: false,
         cache: false,
         enctype: 'multipart/form-data',
-        complete: func,
         data: img,
     });
 }

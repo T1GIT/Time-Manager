@@ -9,16 +9,6 @@ function close_time(selector) {
     }
 }
 
-// Форма при нажатии Enter
-function submit_warn(form) {
-    let warn_inputs = form.children('label.warning, label.empty').next('input');
-    warn_inputs.addClass('warning');
-    setTimeout(function () {
-        warn_inputs.removeClass('warning');
-    }, 300);
-    return false
-}
-
 // Анимированная смена
 function fade_change(field, func) {
     if (typeof field === "string") {field = $(field)}
@@ -27,6 +17,81 @@ function fade_change(field, func) {
         func();
         field.removeClass('change');
     }, close_time(field))
+}
+
+// Сообщения
+function al_warn(text) {
+    let obj = $('<div id="alert_back" class="hidden" style="opacity: 0">\n' +
+        '    <div id="alert_body">\n' +
+        '        <svg id="al_red_sprite" class="bang"><use xlink:href="static/images/sprites.svg#sprite_warn"></use></svg>' +
+        '        <br>' +
+        `        <p>${text}</p>\n` +
+        '        <button class="no" onclick=\'hide_alert()\'>Понятно</button>\n' +
+        '    </div>\n' +
+        '</div>');
+    $('body').append(obj);
+    obj.animate({opacity: 1}, 100, 'swing', function () {
+        obj.removeClass('hidden');
+        setTimeout(function () {obj.find('svg').removeClass('bang')}, 400)
+    })
+}
+
+function al_sent(text) {
+    let obj = $('<div id="alert_back" class="hidden" style="opacity: 0">\n' +
+        '    <div id="alert_body">\n' +
+        '        <svg class="bang"><use xlink:href="static/images/sprites.svg#sprite_mail"></use></svg>' +
+        '        <br>' +
+        `        <p>${text}</p>\n` +
+        '        <button class="no" onclick=\'hide_alert()\'>Хорошо</button>\n' +
+        '    </div>\n' +
+        '</div>');
+    $('body').append(obj);
+    obj.animate({opacity: 1}, 100, 'swing', function () {
+        obj.removeClass('hidden');
+        setTimeout(function () {obj.find('svg').removeClass('bang')}, 400)
+    })
+}
+
+let ask_func = null;
+function al_ask(text, yes_text, yes) {
+
+    ask_func = function () {
+        yes();
+        ask_func = null;
+    };
+    let obj = $('<div id="alert_back" class="hidden" style="opacity: 0">\n' +
+        '    <div id="alert_body">\n' +
+        '        <svg id="al_red_sprite" class="bang"><use xlink:href="static/images/sprites.svg#sprite_ask"></use></svg>' +
+        '        <br>' +
+        `        <p>${text}</p>\n` +
+        '        <button class="no" onclick=\'hide_alert()\'>Отмена</button>\n' +
+        '        <button class="yes" onclick=\'hide_alert(); ask_func()\'>'+ yes_text + '</button>\n' +
+        '    </div>\n' +
+        '</div>');
+    $('body').append(obj);
+    obj.animate({opacity: 1}, 100, 'swing', function () {
+        obj.removeClass('hidden');
+        setTimeout(function () {obj.find('svg').removeClass('bang')}, 400)
+    })
+}
+
+function hide_alert() {
+    let back = $('#alert_back');
+    back.addClass('hidden').animate({opacity: 0}, 200, 'swing', function () {
+        $(this).remove();
+    });
+}
+
+// Форма при нажатии Enter
+function submit_warn(form) {
+    let warn_inputs = form.children('label.warning, label.empty').next('input');
+    if (warn_inputs.length === 0) {form.children('input:focus').blur()}
+    else {
+        warn_inputs.addClass('warning');
+        setTimeout(function () {
+            warn_inputs.removeClass('warning');
+        }, 300);
+    }
 }
 
 // Смена тем
@@ -122,6 +187,7 @@ function guest_auth() {
         $('#authorisation, header .center, header .right').removeAttr('style')
     }, close_time('#authorisation'));
     user_logined = true;
+    make_advices();
     clear_fields()
 }
 
@@ -133,8 +199,6 @@ function make_advices() {
     $('#button_month').attr('title', 'Здесь мы можете записать сроки выполнения долговременных задач');
     $('#button_profile').attr('title', 'Здесь мы можете изменить настройки своего профиля');
     $('#set_login').attr('title', 'Здесь мы можете изменить никнейм');
-    $('#change_avatar').attr('title', 'Нажмите, чтобы изменить аватар');
-    $('#remove_avatar').attr('title', 'Нажмите, чтобы удалить аватар');
     $('#btn_change_email').attr('title', 'Здесь мы можете изменить привязанный почтовый адресс');
     $('#btn_change_pass').attr('title', 'Здесь мы можете изменить пароль');
     $('#btn_delete_profile').attr('title', 'Здесь мы можете удалить ваш аккаунт');
@@ -157,8 +221,6 @@ function remove_advices() {
     $('#button_month').removeAttr('title');
     $('#button_profile').removeAttr('title');
     $('#set_login').removeAttr('title');
-    $('#change_avatar').removeAttr('title');
-    $('#remove_avatar').removeAttr('title');
     $('#btn_change_email').removeAttr('title');
     $('#btn_change_pass').removeAttr('title');
     $('#btn_delete_profile').removeAttr('title');

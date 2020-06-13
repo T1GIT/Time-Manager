@@ -19,21 +19,24 @@
         </svg>
     </span>
     <span id="avatar"
+          ondragenter="$(this).addClass('drop')"
+          ondragleave="$(this).removeClass('drop')"
+          ondrop="drop($(this), event)"
         {% if not avatar %}
             class="none"
         {% endif %}
     >
         <div id="avatar_inside" {{ avatar|safe }}></div>
-        <svg id="change_avatar" onmousedown="
-            if (user_data.login === undefined) {alert('Смена аватара недоступна для гостевой записи')}
-            else {$('#get_file').click()}
-        ">
+        <svg id="change_avatar" onmousedown="$('#get_file').click()">
             <use xlink:href="static/images/sprites.svg#sprite_btn_change"></use>
         </svg>
         <input id="get_file" type="file" accept="image/*" onchange="onchange_get_file($(this)[0].files[0])">
         <hr>
         <svg id="remove_avatar" onmousedown="click_remove_avatar()">
             <use xlink:href="static/images/sprites.svg#sprite_btn_remove"></use>
+        </svg>
+        <svg id="drop_zone" onmousedown="click_remove_avatar()">
+            <use xlink:href="static/images/sprites.svg#sprite_drop"></use>
         </svg>
     </span>
     <span id="exit">
@@ -50,19 +53,6 @@
     </span>
 </div>
 
-<menu id="menu_edit_psw">
-        <p>Изменение пароля</p>
-    <form onsubmit="submit_warn($(this)); return false">
-        <label for="set_psw" class="empty"></label>
-        <input id="set_psw" placeholder="Новый пароль" type="password" oninput="act_field($(this), input_set_psw)">
-        <button id="show_set_psw" type="button" onmousedown="click_show_psw($(this).prev())">
-            <svg>
-                <use xlink:href="static/images/sprites.svg#sprite_btn_show"></use>
-            </svg>
-        </button>
-    </form>
-</menu>
-
 <menu id="menu_confirm_delete">
     <p>Подтвердите удаление профиля</p>
     <button class="yes" type="button"
@@ -75,12 +65,29 @@
     </button>
 </menu>
 
+<menu id="menu_edit_psw">
+    <p>Изменение пароля</p>
+    <form onsubmit="submit_warn($(this)); return false">
+        <label for="set_psw" class="empty"></label>
+        <input id="set_psw" placeholder="Новый пароль" type="password"
+               oninput="act_field($(this), input_set_psw)"
+               onblur="onblur_set_psw($(this))"
+        >
+        <button id="show_set_psw" type="button" onmousedown="click_show_psw($(this).prev())">
+            <svg>
+                <use xlink:href="static/images/sprites.svg#sprite_btn_show"></use>
+            </svg>
+        </button>
+    </form>
+</menu>
+
 <menu id="menu_edit_email">
     <p>Изменение почты</p>
     <form onsubmit="submit_warn($(this)); return false">
         <label for="set_email" class="empty"></label>
         <input id="set_email" placeholder="Новая почта" type="email"
-        oninput="act_field($(this), input_set_email)"
+               oninput="act_field($(this), input_set_email)"
+               onblur="onblur_set_email($(this))"
         >
         <button id="erase_set_email" type="button" onmousedown="click_erase($(this).prev()); return false">
             <svg id="email_btn_erase">
@@ -90,7 +97,7 @@
     </form>
     <form id="confirm_email">
         <p>Почта не подтверждена</p>
-        <button type="button" onmousedown="click_active($(this).closest('menu'))">Подтвердить</button>
+        <button type="button" onmousedown="click_active()">Подтвердить</button>
     </form>
 </menu>
 

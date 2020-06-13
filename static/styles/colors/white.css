@@ -11,12 +11,14 @@ aside menu input, input.fill+button:hover {background-color: #fff}
 aside menu input.fill, #restore:hover, .time:hover {background-color: rgba(255, 255, 255, 0.5)}
 aside menu p, #set_login:focus, .time *, .time input::placeholder, .alert {color: #fff}
 #menu_confirm_delete button, #confirm_email button, .item button, .back .title input, .del_list_task {background-color: #fff}
+#authorisation_menu #checkbox_remember_me:checked~label {color: #fff}
 .item textarea, #add_day_task, #add_month_task, .add_list_task, #add_list, .back {background-color: rgba(255, 255, 255, 0.5)}
 #add_day_task:hover, #add_month_task:hover, #add_list:hover, .add_list_task:hover {background-color: #fff}
-.time.input {background-color: #fff}
+.time.input, #alert_body button {background-color: #fff}
 .list_task textarea:hover {background-color: rgba(255, 255, 255, 0.2)}
 .list_task textarea:focus {background-color: rgba(255, 255, 255, 0.4);}
 #main_clock {border-color: #fff}
 #main_clock::before, #main_clock::after {background-color: #fff}
-#main_clock p {color: #fff}
+#main_clock p, #alert_body p {color: #fff}
+#alert_body svg {fill: #fff}
 
