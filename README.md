@@ -22,5 +22,5 @@
 	* Pycryptodome
 
 ### [Time Manger.com]("http://127.0.0.1:5000/")
-#### Version 2.2
+#### Version 2.5
 ###### 13.06.2020
