@@ -85,12 +85,16 @@ function hide_alert() {
 // Форма при нажатии Enter
 function submit_warn(form) {
     let warn_inputs = form.children('label.warning, label.empty').next('input');
-    if (warn_inputs.length === 0) {form.children('input:focus').blur()}
+    if (warn_inputs.length === 0) {
+        form.children('input:focus').blur();
+        return true
+    }
     else {
         warn_inputs.addClass('warning');
         setTimeout(function () {
             warn_inputs.removeClass('warning');
         }, 300);
+        return false
     }
 }
 
@@ -148,8 +152,8 @@ function guest_auth() {
     $('header .center, header .right').fadeIn(0);
     $('header').removeClass('logout');
     // Установка имени
-    $('header .right a div.nickname').text('Guest');
-    $('#set_login').val('Guest');
+    $('header .right a div.nickname').text('Гость');
+    $('#set_login').val('Гость');
     // Вставка страниц
     $('#page_day')[0].innerHTML = '<div class="body">\n' +
         '<button id="add_day_task" onmousedown="click_add_day($(this))">\n' +

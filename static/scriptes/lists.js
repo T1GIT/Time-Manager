@@ -133,7 +133,6 @@ function blur_list_name(form) {
                     receive('/add_list', function (data) {
                     if (data === 'exist') {
                         del_list(back);
-                        console.log('new')
                     } else {
                         back.removeClass('new');
                         back.prev().prev('button').removeClass('new');
@@ -145,7 +144,6 @@ function blur_list_name(form) {
             receive('/change_list', function (data) {
                 if (data === 'exist') {
                     del_list(back);
-                    console.log('change')
                 }
             }, [old, new_name]);
         }
@@ -186,7 +184,11 @@ function blur_list_task(form) {
 
 function list_key_func(event) {
     let key = event.keyCode;
-    if ((key === 38 && event.target.selectionStart === 0) ||
+    if (key === 13 && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    else if ((key === 38 && event.target.selectionStart === 0) ||
         (key === 40 && event.target.selectionStart === $(event.target).val().length) ||
         (key === 37 && event.target.selectionStart === 0) ||
         (key === 39 && event.target.selectionStart === $(event.target).val().length)

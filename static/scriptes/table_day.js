@@ -116,9 +116,13 @@ function blur_input_day(form) {
 
 function key_func(event) {
     let key = event.keyCode;
-    // if (key === 8 && event.target.selectionStart === 0 && event.target.selectionEnd === 0) {event.preventDefault(); to_prev($(event.target))}
-    // else
-    if ((key === 38 && event.target.selectionStart === 0) ||
+    if (key === 13 && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        event.stopPropagation();
+        $(event.target).blur();
+    }
+    // else if (key === 8 && event.target.selectionStart === 0 && event.target.selectionEnd === 0) {event.preventDefault(); to_prev($(event.target))}
+    else if ((key === 38 && event.target.selectionStart === 0) ||
         (key === 40 && event.target.selectionStart === $(event.target).val().length) ||
         (key === 37 && !(event.target.tagName === 'TEXTAREA' && event.target.selectionStart > 0)) ||
         (key === 39 && !(event.target.tagName === 'TEXTAREA'))
