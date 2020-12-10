@@ -193,9 +193,7 @@ div.body {
     margin: 0;
     position: relative;
     width: 400px;
-    border-radius: 20px;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    border-radius: 25px 25px 20px 20px;
 }
 
 .list_task, .title {
