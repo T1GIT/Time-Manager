@@ -1,12 +1,12 @@
 <img src="https://github.com/T1GIT/T1GIT/raw/main/covers/Time_Manager.png">
 
-<h1 align="center"> |
+<h2 align="center"> |
     <a href="#Description"> Description </a> |
     <a href="#Getting-Started"> Getting Started </a> |
     <a href="#Built-With"> Built With </a> |
     <a href="#Authors"> Authors </a> |
     <a href="#License"> License </a> |
-</h1> 
+</h2> 
 
 # Time Manager
 
