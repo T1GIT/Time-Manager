@@ -1,4 +1,4 @@
-<img src="https://github.com/T1GIT/T1GIT/raw/main/covers/cover.png">
+<img src="https://github.com/T1GIT/T1GIT/raw/main/covers/Time_Manager.png">
 
 ### | [Description](#Description) | [Getting Started](#Getting Started) | [Built With](#Built With) | [Authors](#Authors) | [License](#License) |
 
