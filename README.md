@@ -8,7 +8,7 @@
     <a href="#License"> License </a> |
 </h2> 
 
-# Time Manager
+<h1 align="center"> Time Manager </h1> 
 
 ## Description
 
