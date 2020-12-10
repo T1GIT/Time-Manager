@@ -21,6 +21,9 @@ It has possibility of daily subscribing
 
 ## Using
 
+1. Install all [requirements](#Requirements)
+#### From command line
+
 
 
 ### Requirements
@@ -36,6 +39,7 @@ It has possibility of daily subscribing
 ### Installing
 
 ```
+pip install pip
 pip install --upgrade pip
 pip install flask
 pip install flask_script
@@ -58,9 +62,9 @@ pip install pycryptodome
 
 * [**Derbin Dmitriy**](https://github.com/T1GIT) - CSS designing, JavaScript developing
 * [**Bakanov Artem**](https://github.com/Attilene) - SQLite developing, Database managing
-* [**Voloshkov Grigoriy**] - Interface, color designing, Testing
-* [**Nuraliev Rasim**] - Home page designing
-* [**Kataev Roman**] - Testing
+* **Voloshkov Grigoriy** - Interface, color designing, Testing
+* **Nuraliev Rasim** - Home page designing
+* **Kataev Roman** - Testing
 
 
 ## License
