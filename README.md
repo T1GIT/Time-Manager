@@ -31,13 +31,13 @@ It has 3 sections:
 
 ### Easy way
 
-* Run **RUN.exe**
-* Run **start.bat** (requieres installed Python. Installes all modules itself)
+* Run [**RUN.exe**](/RUN.exe)
+* Run [**start.bat**](/start.bat) (requieres installed Python. Installes all modules itself)
 
 ### Using source files
 1. Install [Python](https://www.python.org/)
 2. Install all [requirements](#Requirements) via the commands from [Installing](#Installing) or 
-via running [script](/start.bat)
+via running [_start.bat_](/start.bat)
 
 #### From command line
 ```
