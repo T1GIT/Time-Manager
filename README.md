@@ -8,8 +8,6 @@
     <a href="#License"> License </a> |
 </h2> 
 
-<h1 align="center"> Time Manager </h1> 
-
 ## Description
 
 Web Site for scheduling
