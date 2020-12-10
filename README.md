@@ -1,29 +1,43 @@
 <img src="https://github.com/T1GIT/T1GIT/raw/main/covers/cover.png">
 
-# Weather Telegram Bot
+### | [Description](#Description) | [Getting Started](#Getting Started) | [Built With](#Built With) | [Authors](#Authors) | [License](#License) |
 
-This Telegram Bot can provide users information about weather
+# Time Manager
 
-You can get weather for:
-1. Today
-2. Tomorrow
-3. Week
-4. 12 hours
+## Description
 
-It has possibility of daily subscribing
+Web Site for scheduling
+Made with flat block style. 
+
+It has light and dark themes with 5 colors for everyone
+
+GUI designing for the best performance and saving your time using it
+
+It has 3 sections:
+* Lists
+* Schedule
+* Deadlines
+
 
 ## Getting Started
 
-1. Download project
-2. Install java version 14 or newer
-3. Install [Maven dependencies](#maven-dependencies)
-4. Run [Main.java](src/main/java/Main.java) from the IntelliJ IDE
+### Easy way
 
-## Using
+* Run **RUN.exe**
+* Run **start.bat** (requieres installed Python. Installes all modules itself)
 
-1. Install all [requirements](#Requirements)
+### Using source files
+1. Install [Python](https://www.python.org/)
+2. Install all [requirements](#Requirements) via the commands from [Installing](#Installing) or 
+via running [script](/start.bat)
+
 #### From command line
-
+```
+python main.py
+```
+#### From PyCharm IDE
+1. Open main.py
+2. Press ctrl+shift+F10
 
 
 ### Requirements
@@ -74,32 +88,3 @@ This project is licensed under the GPL v3.0 License - see the [LICENSE](LICENSE)
 
 ### Version 2.5
 #### 27.06.2020
-
-
-
-
-#
-## (づ￣ ³￣)づ  >>> T1MON -------------------- [ 50% ]
-## ψ(▼へ▼メ) >>> ATTILENE ------------------- [ 35% ]
-## ┌(ಠ_ಠ)┘ >>>> MACMILLAN ---------------- [ 10% ]
-## (ﾉ◕ヮ◕)ﾉ >>>> PRAGMATIC FRIEND -------- [ 4% ]
-## (❍ᴥ❍ʋ) >>>>> TRIIKSTER ------------------- [ 1% ]
-
-## Run:
-#### Basic way:
-* Just run __RUN.exe__
-#### Running source files:
-1. Install [_Python_]("https://www.python.org/") at least version 3.7
-2. Run __start.bat__
-
-### Sources
-* Python 3.8.3
-	* Flask
-	* Flask-Mail
-	* Flask-Script
-	* Werkzeug
-	* Pycryptodome
-
-### [Time Manger.com]("http://127.0.0.1:5000/")
-#### Version 2.5
-###### 27.06.2020
