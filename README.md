@@ -31,41 +31,18 @@ It has possibility of daily subscribing
 	* Flask-Script
 	* Werkzeug
 	* Pycryptodome
+	
+
+### Installing
+
 ```
-<dependency>
-    <groupId>log4j</groupId>
-    <artifactId>log4j</artifactId>
-    <version>1.2.17</version>
-</dependency>
-
-<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-nop</artifactId>
-    <version>1.7.13</version>
-</dependency>
-
-<dependency>
-    <groupId>org.telegram</groupId>
-    <artifactId>telegrambots</artifactId>
-    <version>5.0.1</version>
-</dependency>
-
-<dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.8.6</version>
-</dependency>
+pip install --upgrade pip
+pip install flask
+pip install flask_script
+pip install flask_mail
+pip install werkzeug
+pip install pycryptodome
 ```
-
-## Deployment
-
-This bot is ready for deployment, and already deployd on the [heroku.com](https://heroku.com)
-
-**See:**
-
-* [Running file](Procfile)
-* [Properties file](system.properties)
-
 
 ## Built With
 
@@ -85,12 +62,11 @@ This bot is ready for deployment, and already deployd on the [heroku.com](https:
 * [**Nuraliev Rasim**] - Home page designing
 * [**Kataev Roman**] - Testing
 
-#### Student of the Financial University
-##### Group: PI19-5
 
 ## License
 
 This project is licensed under the GPL v3.0 License - see the [LICENSE](LICENSE) file for details
+
 
 ### Version 2.5
 #### 27.06.2020
