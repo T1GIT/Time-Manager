@@ -48,7 +48,6 @@ python main.py
 	* Flask-Script
 	* Werkzeug
 	* Pycryptodome
-	
 
 ### Installing
 
@@ -70,6 +69,7 @@ pip install pycryptodome
 * [PyCryptoDome](https://pypi.org/project/pycryptodome/) - RSA crypting
 * [JQuery](https://jquery.com) - JavaScript framework
 * [Forge](https://www.npmjs.com/package/node-forge) - JavaScript crypting library
+* [SQLite](https://www.sqlite.org/index.html) - Database library
 
 
 ## Authors
